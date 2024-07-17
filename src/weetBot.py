@@ -45,7 +45,6 @@ def get_cached_data(url):
 def set_cache_data(url, data):
     cache[url] = (data, time.time())
 
-
 def format_message(data_by_drug):
     message_parts = []
     for drug, entries in data_by_drug.items():
@@ -101,18 +100,15 @@ async def check_availability(ctx, indices):
         if part:
             await ctx.send(part)
 
-
 intents = discord.Intents.default()
 intents.message_content = True
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='/', intents=intents)
 
-
 @bot.command(name='sprawdz', aliases=['s'])
 async def check_command(ctx, *args):
     indices = [int(i) for i in args if i.isdigit()]
     await check_availability(ctx, indices)
-
 
 @bot.command(name='lista', aliases=['l'])
 async def list_drugs(ctx):
@@ -121,14 +117,12 @@ async def list_drugs(ctx):
         message += f"{idx}. {name}\n"
     await ctx.send(message)
 
-
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
 
     content = message.content.lower()
-
     if content.startswith('sprawdz') or content.startswith('s'):
         args = content.split()[1:]
         indices = [int(i) for i in args if i.isdigit()]
@@ -141,7 +135,6 @@ async def on_message(message):
         await message.channel.send(response)
 
     await bot.process_commands(message)
-
 
 @bot.event
 async def on_ready():
