@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  lek-monitor:
+    build: .
+    container_name: lek-monitor
+    restart: unless-stopped
+    environment:
+      - DISCORD_TOKEN=DISCORD_TOKEN
