@@ -49,7 +49,7 @@ def set_cache_data(url, data):
 def format_message(data_by_drug):
     message_parts = []
     for drug, entries in data_by_drug.items():
-        message = f"{drug}\n{'_'*34}\n"
+        message = f"🌻  {drug}  🌻 \n{'_'}\n"
         for entry in entries:
             status_icon = "🔴"
             if "wiele sztuk" in entry[2]:
@@ -61,11 +61,11 @@ def format_message(data_by_drug):
             elif "ostatnia sztuka" in entry[2]:
                 status_icon = "🔴"
             part = (
-                f"Apteka: {entry[0]}\n"
-                f"Adres: {entry[1]}\n"
-                f"Status: {status_icon} {entry[2]}\n"
-                f"Rodzaj: {entry[3]}\n"
-                f"Przecena: {entry[5]}\n\n"
+                f"⚕️  {entry[0]}\n"
+                f"🗺️  {entry[1]}\n"
+                f"⛽  {status_icon} {entry[2]} {status_icon}\n"
+                f"🎍  {entry[3]}\n"
+                f"📉  {entry[5]}\n\n"
             )
             message += part
         if len(message) > 2000:
@@ -105,7 +105,7 @@ async def check_availability(ctx, indices):
 intents = discord.Intents.default()
 intents.message_content = True
 TOKEN = os.getenv('DISCORD_TOKEN')
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='/', intents=intents)
 
 
 @bot.command(name='sprawdz', aliases=['s'])
@@ -114,7 +114,7 @@ async def check_command(ctx, *args):
     await check_availability(ctx, indices)
 
 
-@bot.command(name='lista')
+@bot.command(name='lista', aliases=['l'])
 async def list_drugs(ctx):
     message = "Lista leków:\n\n"
     for idx, name in enumerate(urls.keys(), 1):
@@ -134,7 +134,7 @@ async def on_message(message):
         indices = [int(i) for i in args if i.isdigit()]
         await check_availability(message.channel, indices)
 
-    elif content.startswith('lista'):
+    elif content.startswith('lista') or content.startswith('l'):
         response = "Lista leków:\n\n"
         for idx, name in enumerate(urls.keys(), 1):
             response += f"{idx}. {name}\n"
