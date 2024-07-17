@@ -1,9 +1,7 @@
-import requests
 from bs4 import BeautifulSoup
 
-def fetch_availability(url):
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+def fetch_availability(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
 
     apteki = soup.find_all('li', class_='MuiListItem-root')
 
