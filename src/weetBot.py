@@ -48,7 +48,7 @@ def set_cache_data(url, data):
 def format_message(data_by_drug):
     message_parts = []
     for drug, entries in data_by_drug.items():
-        message = f"🌻  {drug}  🌻 \n{'_'}\n"
+        message = f"🌻  {drug}  🌻 \n\n{'⬇️🔽⏬⏬🔽⬇️'*2}\n\n"
         for entry in entries:
             status_icon = "🔴"
             if "wiele sztuk" in entry[2]:
