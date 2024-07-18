@@ -6,9 +6,10 @@ WORKDIR /app
 
 # Copy the rest of the application code
 COPY ./src .
+RUN chmod +x entrypoint.sh
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Command to run the bot
-CMD ["python", "weetBot.py"]
+ENTRYPOINT ["/app/entrypoint.sh"]

@@ -1,7 +1,7 @@
 import os
 
 CACHE_TIMEOUT = int(os.getenv('CACHE_TIMEOUT', 600))
-TOKEN = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('TOKEN')
 
 CHECK_COMMAND = "s"
 CHECK_ALIASES = ['sprawdz', 'check']
